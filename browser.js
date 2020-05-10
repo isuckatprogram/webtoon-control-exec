@@ -11,14 +11,19 @@ require('update-electron-app')({
 })
 
 function createWindow(){
+    // var fork = require('child_process').fork
+    // var child = fork('./control')
+    require('./control')
     window = new BrowserWindow({
         width: 800,
         height: 600,
+        titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: true
         },
         icon:'images/favicon.ico'
     })
+    window.loadURL('https://webtoons.com')
     window.webContents.on('did-finish-load', function() {
         window.show();
     })
@@ -27,4 +32,7 @@ function createWindow(){
 
 app.on('ready',()=>{
     createWindow()
+})
+app.on('before-quit',(e)=>{
+
 })
